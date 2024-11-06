@@ -1,0 +1,203 @@
+.stats-container {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background: #1a1a1a;
+    border-radius: 15px;
+}
+
+.screen-border {
+    background: #000;
+    border: 3px solid #333;
+    border-radius: 10px;
+    padding: 15px;
+    height: 100%;
+    box-shadow: inset 0 0 20px rgba(0, 255, 0, 0.2);
+}
+
+.screen {
+    background: #111;
+    border-radius: 8px;
+    padding: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Información básica del Pokémon */
+.pokemon-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.header-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pokemon-id {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8em;
+    color: #00ff00;
+    opacity: 0.8;
+}
+
+.pokemon-name {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.2em;
+    color: #00ff00;
+    margin: 0;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+.type-badge {
+    align-self: center;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    background: rgba(0, 255, 0, 0.2);
+    color: #00ff00;
+    border: 1px solid #00ff00;
+}
+
+/* Sección de estadísticas */
+.stats-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.stat-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stat-container label {
+    width: 50px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8em;
+    color: #00ff00;
+}
+
+/* grafico.component.css */
+/* ... (mantener los estilos anteriores) ... */
+
+.stat-bar {
+    flex: 1;
+    height: 20px;
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid #00ff00;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.stat-fill {
+    height: 100%;
+    transition: width 0.5s ease-out;
+    position: relative;
+}
+
+.stat-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.1) 100%
+    );
+}
+
+.stat-fill.hp {
+    background: linear-gradient(90deg, #00ff00 0%, #33ff33 100%);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.stat-fill.atk {
+    background: linear-gradient(90deg, #ff3333 0%, #ff6666 100%);
+    box-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
+}
+
+.stat-fill.def {
+    background: linear-gradient(90deg, #3333ff 0%, #6666ff 100%);
+    box-shadow: 0 0 10px rgba(51, 51, 255, 0.5);
+}
+
+.stat-value {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7em;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    z-index: 1;
+}
+
+/* Efectos de hover mejorados */
+.stat-bar:hover .stat-fill {
+    filter: brightness(1.2);
+    transition: filter 0.3s ease;
+}
+
+.stat-bar:hover .stat-value {
+    transform: translateY(-50%) scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+/* Animación de pulso para las barras */
+@keyframes pulseBorder {
+    0% { box-shadow: 0 0 5px rgba(0, 255, 0, 0.5); }
+    50% { box-shadow: 0 0 15px rgba(0, 255, 0, 0.7); }
+    100% { box-shadow: 0 0 5px rgba(0, 255, 0, 0.5); }
+}
+
+.stat-bar {
+    animation: pulseBorder 2s infinite;
+}
+
+/* Estilos para diferentes tipos de Pokémon */
+.type-normal { background-color: rgba(168, 168, 120, 0.3); }
+.type-fire { background-color: rgba(240, 128, 48, 0.3); }
+.type-water { background-color: rgba(104, 144, 240, 0.3); }
+.type-electric { background-color: rgba(248, 208, 48, 0.3); }
+.type-grass { background-color: rgba(120, 200, 80, 0.3); }
+.type-ice { background-color: rgba(152, 216, 216, 0.3); }
+.type-fighting { background-color: rgba(192, 48, 40, 0.3); }
+.type-poison { background-color: rgba(160, 64, 160, 0.3); }
+.type-ground { background-color: rgba(224, 192, 104, 0.3); }
+.type-flying { background-color: rgba(168, 144, 240, 0.3); }
+.type-psychic { background-color: rgba(248, 88, 136, 0.3); }
+.type-bug { background-color: rgba(168, 184, 32, 0.3); }
+.type-rock { background-color: rgba(184, 160, 56, 0.3); }
+.type-ghost { background-color: rgba(112, 88, 152, 0.3); }
+.type-dragon { background-color: rgba(112, 56, 248, 0.3); }
+/* Continuación de los estilos para tipos de Pokémon */
+.type-dark { background-color: rgba(112, 88, 72, 0.3); }
+.type-steel { background-color: rgba(184, 184, 208, 0.3); }
+.type-fairy { background-color: rgba(238, 153, 172, 0.3); }
+
+/* Efectos de hover */
+.stat-bar:hover .stat-fill {
+    filter: brightness(1.2);
+}
+
+.type-badge:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease;
+}

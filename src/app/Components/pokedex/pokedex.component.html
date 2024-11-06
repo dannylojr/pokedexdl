@@ -1,0 +1,9 @@
+<!-- pokedex.component.html -->
+<section class="imagePoke">
+    <img [src]="imageURL" alt="Pokemon">
+    <div class="controls-container">
+        <button class="control-btn" (click)="previousPokemon()">◀</button>
+        <div class="control-center"></div>
+        <button class="control-btn" (click)="nextPokemon()">▶</button>
+    </div>
+</section>
