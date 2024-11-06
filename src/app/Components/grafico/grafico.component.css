@@ -1,37 +1,35 @@
 .stats-container {
     width: 100%;
     height: 100%;
-    padding: 20px;
+    padding: 15px;
     background: #1a1a1a;
-    border-radius: 15px;
+    border-radius: 10px;
 }
 
 .screen-border {
     background: #000;
-    border: 3px solid #333;
-    border-radius: 10px;
-    padding: 15px;
+    border: 2px solid #333;
+    border-radius: 8px;
+    padding: 10px;
     height: 100%;
-    box-shadow: inset 0 0 20px rgba(0, 255, 0, 0.2);
+    box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.2);
 }
 
 .screen {
     background: #111;
-    border-radius: 8px;
-    padding: 20px;
+    border-radius: 6px;
+    padding: 15px;
     height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 25px;
-    position: relative;
-    overflow: hidden;
+    gap: 20px;
 }
 
-/* Información básica del Pokémon */
+/* Información del Pokémon */
 .pokemon-info {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
 }
 
 .header-info {
@@ -41,158 +39,109 @@
 }
 
 .pokemon-id {
-    font-family: 'Press Start 2P', cursive;
     font-size: 0.8em;
     color: #00ff00;
     opacity: 0.8;
 }
 
 .pokemon-name {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 1.2em;
+    font-size: 1em;
     color: #00ff00;
     margin: 0;
-    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    text-transform: uppercase;
 }
 
+/* Badge de tipo */
 .type-badge {
-    align-self: center;
-    padding: 5px 15px;
-    border-radius: 15px;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.8em;
+    align-self: flex-start;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.7em;
     text-transform: uppercase;
-    background: rgba(0, 255, 0, 0.2);
-    color: #00ff00;
-    border: 1px solid #00ff00;
 }
 
 /* Sección de estadísticas */
 .stats-section {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
+    flex-grow: 1;
 }
 
 .stat-container {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 .stat-container label {
-    width: 50px;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.8em;
+    width: 40px;
+    font-size: 0.7em;
     color: #00ff00;
 }
 
-/* grafico.component.css */
-/* ... (mantener los estilos anteriores) ... */
-
 .stat-bar {
     flex: 1;
-    height: 20px;
+    height: 15px;
     background: rgba(0, 255, 0, 0.1);
     border: 1px solid #00ff00;
-    border-radius: 10px;
+    border-radius: 7px;
     overflow: hidden;
     position: relative;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .stat-fill {
     height: 100%;
     transition: width 0.5s ease-out;
-    position: relative;
-}
-
-.stat-fill::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 0.1) 0%,
-        rgba(255, 255, 255, 0.2) 50%,
-        rgba(255, 255, 255, 0.1) 100%
-    );
-}
-
-.stat-fill.hp {
-    background: linear-gradient(90deg, #00ff00 0%, #33ff33 100%);
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-}
-
-.stat-fill.atk {
-    background: linear-gradient(90deg, #ff3333 0%, #ff6666 100%);
-    box-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
-}
-
-.stat-fill.def {
-    background: linear-gradient(90deg, #3333ff 0%, #6666ff 100%);
-    box-shadow: 0 0 10px rgba(51, 51, 255, 0.5);
 }
 
 .stat-value {
     position: absolute;
-    right: 10px;
+    right: 5px;
     top: 50%;
     transform: translateY(-50%);
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.7em;
+    font-size: 0.6em;
     color: #fff;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-    z-index: 1;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
 }
 
-/* Efectos de hover mejorados */
-.stat-bar:hover .stat-fill {
-    filter: brightness(1.2);
-    transition: filter 0.3s ease;
+/* Colores de las barras */
+.stat-fill.hp {
+    background: linear-gradient(90deg, #ff0000, #ff4444);
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
 }
 
-.stat-bar:hover .stat-value {
-    transform: translateY(-50%) scale(1.1);
-    transition: transform 0.3s ease;
+.stat-fill.atk {
+    background: linear-gradient(90deg, #ff6600, #ff9944);
+    box-shadow: 0 0 5px rgba(255, 102, 0, 0.5);
 }
 
-/* Animación de pulso para las barras */
-@keyframes pulseBorder {
-    0% { box-shadow: 0 0 5px rgba(0, 255, 0, 0.5); }
-    50% { box-shadow: 0 0 15px rgba(0, 255, 0, 0.7); }
-    100% { box-shadow: 0 0 5px rgba(0, 255, 0, 0.5); }
+.stat-fill.def {
+    background: linear-gradient(90deg, #4444ff, #6666ff);
+    box-shadow: 0 0 5px rgba(68, 68, 255, 0.5);
 }
 
-.stat-bar {
-    animation: pulseBorder 2s infinite;
-}
+/* Estilos para los tipos de Pokémon */
+.type-normal { background-color: #A8A878; color: white; }
+.type-fire { background-color: #F08030; color: white; }
+.type-water { background-color: #6890F0; color: white; }
+.type-electric { background-color: #F8D030; color: black; }
+.type-grass { background-color: #78C850; color: white; }
+.type-ice { background-color: #98D8D8; color: black; }
+.type-fighting { background-color: #C03028; color: white; }
+.type-poison { background-color: #A040A0; color: white; }
+.type-ground { background-color: #E0C068; color: black; }
+.type-flying { background-color: #A890F0; color: white; }
+.type-psychic { background-color: #F85888; color: white; }
+.type-bug { background-color: #A8B820; color: white; }
+.type-rock { background-color: #B8A038; color: white; }
+.type-ghost { background-color: #705898; color: white; }
+.type-dragon { background-color: #7038F8; color: white; }
+.type-dark { background-color: #705848; color: white; }
+.type-steel { background-color: #B8B8D0; color: black; }
+.type-fairy { background-color: #EE99AC; color: black; }
 
-/* Estilos para diferentes tipos de Pokémon */
-.type-normal { background-color: rgba(168, 168, 120, 0.3); }
-.type-fire { background-color: rgba(240, 128, 48, 0.3); }
-.type-water { background-color: rgba(104, 144, 240, 0.3); }
-.type-electric { background-color: rgba(248, 208, 48, 0.3); }
-.type-grass { background-color: rgba(120, 200, 80, 0.3); }
-.type-ice { background-color: rgba(152, 216, 216, 0.3); }
-.type-fighting { background-color: rgba(192, 48, 40, 0.3); }
-.type-poison { background-color: rgba(160, 64, 160, 0.3); }
-.type-ground { background-color: rgba(224, 192, 104, 0.3); }
-.type-flying { background-color: rgba(168, 144, 240, 0.3); }
-.type-psychic { background-color: rgba(248, 88, 136, 0.3); }
-.type-bug { background-color: rgba(168, 184, 32, 0.3); }
-.type-rock { background-color: rgba(184, 160, 56, 0.3); }
-.type-ghost { background-color: rgba(112, 88, 152, 0.3); }
-.type-dragon { background-color: rgba(112, 56, 248, 0.3); }
-/* Continuación de los estilos para tipos de Pokémon */
-.type-dark { background-color: rgba(112, 88, 72, 0.3); }
-.type-steel { background-color: rgba(184, 184, 208, 0.3); }
-.type-fairy { background-color: rgba(238, 153, 172, 0.3); }
-
-/* Efectos de hover */
+/* Efectos hover */
 .stat-bar:hover .stat-fill {
     filter: brightness(1.2);
 }
@@ -201,3 +150,119 @@
     transform: scale(1.05);
     transition: transform 0.2s ease;
 }
+
+/* Animación de escaneo */
+@keyframes scanline {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+/* Continuación del grafico.component.css */
+
+.screen::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+                rgba(255,255,255,0) 0%,
+                rgba(255,255,255,0.03) 50%,
+                rgba(255,255,255,0) 100%);
+    animation: scanline 2s linear infinite;
+    pointer-events: none;
+}
+
+/* Mejoras de responsividad */
+@media (max-width: 400px) {
+    .stats-container {
+        padding: 10px;
+    }
+
+    .screen-border {
+        padding: 8px;
+    }
+
+    .screen {
+        padding: 10px;
+    }
+
+    .pokemon-name {
+        font-size: 0.9em;
+    }
+
+    .type-badge {
+        padding: 3px 8px;
+        font-size: 0.6em;
+    }
+
+    .stat-container label {
+        width: 30px;
+        font-size: 0.6em;
+    }
+
+    .stat-bar {
+        height: 12px;
+    }
+
+    .stat-value {
+        font-size: 0.5em;
+    }
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.stats-container {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Mejora en la visualización de estadísticas altas */
+.stat-fill.high {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+/* Añade esto al final de tu grafico.component.css */
+.type-badge {
+    align-self: center;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilos para los tipos */
+.type-normal { background-color: #A8A878; }
+.type-fire { background-color: #F08030; }
+.type-water { background-color: #6890F0; }
+.type-electric { background-color: #F8D030; }
+.type-grass { background-color: #78C850; }
+.type-ice { background-color: #98D8D8; }
+.type-fighting { background-color: #C03028; }
+.type-poison { background-color: #A040A0; }
+.type-ground { background-color: #E0C068; }
+.type-flying { background-color: #A890F0; }
+.type-psychic { background-color: #F85888; }
+.type-bug { background-color: #A8B820; }
+.type-rock { background-color: #B8A038; }
+.type-ghost { background-color: #705898; }
+.type-dragon { background-color: #7038F8; }
+.type-dark { background-color: #705848; }
+.type-steel { background-color: #B8B8D0; }
+.type-fairy { background-color: #EE99AC; }

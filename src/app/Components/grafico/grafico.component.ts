@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,36 +8,31 @@ import { CommonModule } from '@angular/common';
   templateUrl: './grafico.component.html',
   styleUrls: ['./grafico.component.css']
 })
-export class GraficoComponent implements OnChanges {
-  @Input() id: string = "#000";
-  @Input() nombrePokemon: string = "UNKNOWN";
-  @Input() tipoPokemon: string = "NORMAL";
-  @Input() vidaPokemon: number = 0;
-  @Input() ataquePokemon: number = 0;
-  @Input() defensaPokemon: number = 0;
-  @Input() imagenNormal: string = '';
-  @Input() imagenShiny: string = '';
-  @Input() imagenMega: string = '';
+export class GraficoComponent {
+  // Estos Inputs se corresponden con las variables usadas en el template
+  @Input() id: string = "#000";                // Usado en {{id}}
+  @Input() nombrePokemon: string = "UNKNOWN";   // Usado en {{nombrePokemon}}
+  @Input() tipoPokemon: string = "NORMAL";      // Usado en {{tipoPokemon}} y en la clase dinámica
+  @Input() vidaPokemon: number = 0;            // Usado en el cálculo de width y en {{vidaPokemon}}
+  @Input() ataquePokemon: number = 0;          // Usado en el cálculo de width y en {{ataquePokemon}}
+  @Input() defensaPokemon: number = 0;         // Usado en el cálculo de width y en {{defensaPokemon}}
 
-  currentImage: string = '';
-  hasMega: boolean = false;
-
-  ngOnChanges() {
-    this.currentImage = this.imagenNormal;
-    this.hasMega = !!this.imagenMega;
+  // Podríamos añadir métodos útiles para el template
+  getTypeClass(): string {
+    // Obtiene el primer tipo en caso de que haya varios
+    return 'type-' + this.tipoPokemon.toLowerCase().split(',')[0].trim();
   }
 
-  showShiny() {
-    this.currentImage = this.imagenShiny || this.imagenNormal;
+  // Métodos para calcular los porcentajes de las stats
+  getHPPercentage(): number {
+    return (this.vidaPokemon / 255) * 100;
   }
 
-  showNormal() {
-    this.currentImage = this.imagenNormal;
+  getATKPercentage(): number {
+    return (this.ataquePokemon / 190) * 100;
   }
 
-  showMega() {
-    if (this.hasMega) {
-      this.currentImage = this.imagenMega;
-    }
+  getDEFPercentage(): number {
+    return (this.defensaPokemon / 230) * 100;
   }
 }

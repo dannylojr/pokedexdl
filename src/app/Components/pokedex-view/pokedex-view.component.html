@@ -1,29 +1,43 @@
-<div class="pokedex-view">
-    <span class="title">POKÉDEX</span>
-    <section class="pokedex">
-        <div class="rectangle1">
-            <div class="image-container">
-                <app-pokedex
-                [imageURL]="pokemonImagen"
-                [shinyImageURL]="pokemonImagenShiny"
-                [megaImageURL]="pokemonImagenMega"
-                (pokemonId)="changePokemon($event)">
-                </app-pokedex>
+<div class="stats-container">
+    <div class="screen-border">
+        <div class="screen">
+            <!-- Sección de información básica -->
+            <div class="pokemon-info">
+                <div class="header-info">
+                    <span class="pokemon-id">{{id}}</span>                    <!-- Usa @Input() id -->
+                    <h2 class="pokemon-name">{{nombrePokemon}}</h2>          <!-- Usa @Input() nombrePokemon -->
+                </div>
+                <div class="type-badge" [class]="getTypeClass()">           <!-- Usa el método getTypeClass() -->
+                    {{tipoPokemon}}                                         <!-- Usa @Input() tipoPokemon -->
+                </div>
             </div>
-            <div class="points-container">
-                <span class="point"></span>
-                <span class="point"></span>
+
+            <!-- Sección de estadísticas -->
+            <div class="stats-section">
+                <div class="stat-container">
+                    <label>HP</label>
+                    <div class="stat-bar">
+                        <div class="stat-fill hp" [style.width.%]="getHPPercentage()"></div>  <!-- Usa getHPPercentage() -->
+                        <span class="stat-value">{{vidaPokemon}}/255</span>                   <!-- Usa @Input() vidaPokemon -->
+                    </div>
+                </div>
+
+                <div class="stat-container">
+                    <label>ATK</label>
+                    <div class="stat-bar">
+                        <div class="stat-fill atk" [style.width.%]="getATKPercentage()"></div>  <!-- Usa getATKPercentage() -->
+                        <span class="stat-value">{{ataquePokemon}}/190</span>                   <!-- Usa @Input() ataquePokemon -->
+                    </div>
+                </div>
+
+                <div class="stat-container">
+                    <label>DEF</label>
+                    <div class="stat-bar">
+                        <div class="stat-fill def" [style.width.%]="getDEFPercentage()"></div>  <!-- Usa getDEFPercentage() -->
+                        <span class="stat-value">{{defensaPokemon}}/230</span>                  <!-- Usa @Input() defensaPokemon -->
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="rectangle2">
-            <app-grafico
-            [id]="pokemonData.id"
-            [nombrePokemon]="pokemonData.nombre"
-            [tipoPokemon]="pokemonData.tipo"
-            [vidaPokemon]="pokemonData.vida"
-            [ataquePokemon]="pokemonData.ataque"
-            [defensaPokemon]="pokemonData.defensa">
-            </app-grafico>
-        </div>
-    </section>
+    </div>
 </div>

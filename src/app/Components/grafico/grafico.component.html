@@ -1,41 +1,49 @@
-<!-- grafico.component.html -->
-<div class="stats-container">
+<div class="stats-container" [ngClass]="'theme-' + primaryType.toLowerCase()">
     <div class="screen-border">
         <div class="screen">
-            <!-- Sección de información básica -->
             <div class="pokemon-info">
                 <div class="header-info">
                     <span class="pokemon-id">{{id}}</span>
                     <h2 class="pokemon-name">{{nombrePokemon}}</h2>
                 </div>
-                <div class="type-badge" [class]="'type-' + tipoPokemon.toLowerCase()">
-                    {{tipoPokemon}}
+                <div class="type-badges">
+                    <span *ngFor="let tipo of tipoPokemon" class="type-badge" [ngClass]="'type-' + tipo.toLowerCase()">
+                        {{tipo}}
+                      </span>
                 </div>
             </div>
 
-            <!-- Sección de estadísticas -->
             <div class="stats-section">
                 <div class="stat-container">
                     <label>HP</label>
                     <div class="stat-bar">
-                        <div class="stat-fill hp" [style.width.%]="(vidaPokemon / 255) * 100"></div>
-                        <span class="stat-value">{{vidaPokemon}}/255</span>
+                        <div class="stat-fill hp" 
+                             [style.width.%]="(vidaPokemon / 255) * 100"
+                             [class.high]="isHighHP">
+                            <span class="stat-value">{{vidaPokemon}}/255</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="stat-container">
                     <label>ATK</label>
                     <div class="stat-bar">
-                        <div class="stat-fill atk" [style.width.%]="(ataquePokemon / 190) * 100"></div>
-                        <span class="stat-value">{{ataquePokemon}}/190</span>
+                        <div class="stat-fill atk" 
+                             [style.width.%]="(ataquePokemon / 190) * 100"
+                             [class.high]="isHighAtk">
+                            <span class="stat-value">{{ataquePokemon}}/190</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="stat-container">
                     <label>DEF</label>
                     <div class="stat-bar">
-                        <div class="stat-fill def" [style.width.%]="(defensaPokemon / 230) * 100"></div>
-                        <span class="stat-value">{{defensaPokemon}}/230</span>
+                        <div class="stat-fill def" 
+                             [style.width.%]="(defensaPokemon / 230) * 100"
+                             [class.high]="isHighDef">
+                            <span class="stat-value">{{defensaPokemon}}/230</span>
+                        </div>
                     </div>
                 </div>
             </div>

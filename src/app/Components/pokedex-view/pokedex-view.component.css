@@ -1,66 +1,116 @@
-body {
-    margin: 0;
-    padding: 0;
+.pokedex-container {
+    width: 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
-    background-color: #1a1a1a;
-}
-
-.pokedex-view {
-    width: 500px;
-    height: 100vh;
-    margin: 20px;
-    background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
-    border: 3px solid #333;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
     align-items: center;
+    background: #1a1a1a;
     padding: 20px;
-    gap: 20px;
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
 }
 
-.title {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 2rem;
-    color: #00ff00;
-    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-    letter-spacing: 2px;
+.pokedex-frame {
+    width: 400px;
+    background: #ff0000;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 
+        -5px -5px 10px rgba(0,0,0,0.3) inset,
+        5px 5px 10px rgba(255,255,255,0.1) inset,
+        0 0 20px rgba(0,0,0,0.5);
 }
 
-.pokedex {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: calc(100% - 80px);
-    gap: 20px;
-}
-
-.rectangle1, .rectangle2 {
-    flex: 1;
-    background-color: #222;
-    border: 2px solid #444;
+/* Sección Superior */
+.screen-section {
+    background: #cc0000;
     border-radius: 10px;
-    position: relative;
-    padding: 15px;
-    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    margin-bottom: 10px;
 }
 
-.rectangle1::before, .rectangle2::before {
-    content: '';
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 10px;
-    height: 10px;
-    background-color: #00ff00;
+.top-lights {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.light {
     border-radius: 50%;
-    box-shadow: 0 0 10px #00ff00;
-    animation: blink 2s infinite;
+    border: 2px solid #222;
 }
 
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+.big-light {
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(#89cff0, #4169e1);
+    margin-right: 20px;
+    animation: glow 2s infinite;
+}
+
+.small-lights {
+    display: flex;
+    gap: 10px;
+}
+
+.light.red {
+    width: 15px;
+    height: 15px;
+    background: radial-gradient(#ff6b6b, #cc0000);
+}
+
+.light.yellow {
+    width: 15px;
+    height: 15px;
+    background: radial-gradient(#ffd93d, #ffa600);
+}
+
+.light.green {
+    width: 15px;
+    height: 15px;
+    background: radial-gradient(#6bff6b, #00cc00);
+}
+
+.main-screen {
+    background: #98cb98;
+    border: 20px solid #222;
+    border-radius: 10px;
+    padding: 10px;
+    position: relative;
+}
+
+/* Sección de la Bisagra */
+.hinge {
+    height: 20px;
+    background: #cc0000;
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.hinge-line {
+    width: 45px;
+    height: 100%;
+    background: #8b0000;
+    border-radius: 3px;
+}
+
+/* Sección Inferior */
+.info-section {
+    background: #cc0000;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 5px #4169e1; }
+    50% { box-shadow: 0 0 20px #4169e1; }
+    100% { box-shadow: 0 0 5px #4169e1; }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .pokedex-frame {
+        width: 100%;
+        max-width: 400px;
+    }
 }
