@@ -1,43 +1,65 @@
-<div class="stats-container">
-    <div class="screen-border">
-        <div class="screen">
-            <!-- Sección de información básica -->
-            <div class="pokemon-info">
-                <div class="header-info">
-                    <span class="pokemon-id">{{id}}</span>                    <!-- Usa @Input() id -->
-                    <h2 class="pokemon-name">{{nombrePokemon}}</h2>          <!-- Usa @Input() nombrePokemon -->
-                </div>
-                <div class="type-badge" [class]="getTypeClass()">           <!-- Usa el método getTypeClass() -->
-                    {{tipoPokemon}}                                         <!-- Usa @Input() tipoPokemon -->
-                </div>
-            </div>
+<div class="pokedex-view">
+  <h1 class="title">POKÉDEX</h1>
+  
+  <div class="search-container">
+    <input 
+      type="text" 
+      [(ngModel)]="searchQuery"
+      placeholder="Buscar por nombre o #" 
+      (keyup.enter)="searchPokemon()"
+      [class.error]="errorMessage"
+      autocomplete="off">
+    <button (click)="searchPokemon()" [disabled]="isLoading">
+      <span *ngIf="!isLoading">Buscar</span>
+      <span *ngIf="isLoading">Buscando...</span>
+    </button>
+    <button *ngIf="searchQuery" (click)="clearSearch()" class="clear-button">
+      ✕
+    </button>
+  </div>
 
-            <!-- Sección de estadísticas -->
-            <div class="stats-section">
-                <div class="stat-container">
-                    <label>HP</label>
-                    <div class="stat-bar">
-                        <div class="stat-fill hp" [style.width.%]="getHPPercentage()"></div>  <!-- Usa getHPPercentage() -->
-                        <span class="stat-value">{{vidaPokemon}}/255</span>                   <!-- Usa @Input() vidaPokemon -->
-                    </div>
-                </div>
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
 
-                <div class="stat-container">
-                    <label>ATK</label>
-                    <div class="stat-bar">
-                        <div class="stat-fill atk" [style.width.%]="getATKPercentage()"></div>  <!-- Usa getATKPercentage() -->
-                        <span class="stat-value">{{ataquePokemon}}/190</span>                   <!-- Usa @Input() ataquePokemon -->
-                    </div>
-                </div>
-
-                <div class="stat-container">
-                    <label>DEF</label>
-                    <div class="stat-bar">
-                        <div class="stat-fill def" [style.width.%]="getDEFPercentage()"></div>  <!-- Usa getDEFPercentage() -->
-                        <span class="stat-value">{{defensaPokemon}}/230</span>                  <!-- Usa @Input() defensaPokemon -->
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="pokedex-container" [class.loading]="isLoading">
+    <div class="pokedex-screen">
+      <app-pokedex
+        [imageURL]="pokemonImagen"
+        [shinyImageURL]="pokemonImagenShiny"
+        (pokemonId)="changePokemon($event)">
+      </app-pokedex>
     </div>
+    
+    <div class="pokedex-info">
+      <app-grafico
+        [id]="pokemonData.id"
+        [nombrePokemon]="pokemonData.nombre"
+        [tipoPokemon]="pokemonData.tipo"
+        [vidaPokemon]="pokemonData.vida"
+        [ataquePokemon]="pokemonData.ataque"
+        [defensaPokemon]="pokemonData.defensa"
+        [velocidadPokemon]="pokemonData.velocidad">
+      </app-grafico>
+      
+      <div class="additional-info">
+        <p><strong>Altura:</strong> {{pokemonData.altura}} m</p>
+        <p><strong>Peso:</strong> {{pokemonData.peso}} kg</p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isLoading" class="loading-overlay">
+    <div class="loading-spinner">
+      <div class="pokeball-spinner"></div>
+      <span>Cargando...</span>
+    </div>
+  </div>
+
+
+
+  <footer class="pokedex-footer">
+    <p>Pokémon #{{pokemonId}} de 898</p>
+    <small>Datos proporcionados por PokéAPI</small>
+  </footer>
 </div>

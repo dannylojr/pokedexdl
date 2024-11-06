@@ -1,7 +1,37 @@
-<div class="pokemon-display">
-    <button class="nav-button prev" (click)="changePokemon(-1)">◀</button>
-    <div class="pokemon-container">
-        <img [src]="imageURL" alt="Pokemon" class="pokemon-sprite">
+<div class="pokedex-screen">
+  <div class="screen-border">
+    <div class="screen-container">
+      <img [src]="currentImage || imageURL" 
+           [class.shiny]="isShiny"
+           alt="Pokemon" 
+           class="pokemon-image">
     </div>
-    <button class="nav-button next" (click)="changePokemon(1)">▶</button>
+  </div>
+
+  <div class="controls-section">
+    <!-- Botones de navegación -->
+    <div class="navigation-controls">
+      <button class="nav-button prev" 
+              (click)="previousPokemon()" 
+              title="Previous Pokémon">
+        ◀
+      </button>
+      <div class="center-circle"></div>
+      <button class="nav-button next" 
+              (click)="nextPokemon()" 
+              title="Next Pokémon">
+        ▶
+      </button>
+    </div>
+
+    <!-- Controles adicionales -->
+    <div class="additional-controls">
+      <button class="control-button" 
+              (click)="toggleShiny()" 
+              [class.active]="isShiny"
+              title="Toggle Shiny">
+        ✨
+      </button>
+    </div>
+  </div>
 </div>
